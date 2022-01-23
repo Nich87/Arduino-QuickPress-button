@@ -11,9 +11,9 @@ boolean numbers[10][7] = {
    {1,1,1,1,0,1,1}   // 9
 };
 
-const int buttons[] = { 23,25,27,29,31,33,35,37 };
+const int buttons[] = { 23,25,27,29,31,33,35 };
 bool isPress = false;
-int counter = 0;
+int counter = 1;
 
 void setup() {
     for (int i=2;i<=8;i++) pinMode(i,OUTPUT);          // D2~D8を出力に
@@ -22,28 +22,27 @@ void setup() {
 }
 
 void loop() {
-  if(counter == 8) counter = 0;
-  start();
+    if(counter == 8) counter = 1;
+    start();
 }
 
 void start(){
-  for (int button : buttons) {
-    if (digitalRead(button) == 0 && isPress == false) isPress = true;
-    if (isPress) NumberPrint(counter);
-    else counter++;
-    if (counter == 8) break;
+    for (int button : buttons) {
+        if (digitalRead(button) == 0 && isPress == false) isPress = true;
+        if (isPress) NumberPrint(counter);
+        else counter++;
     }
-  }
+}
 
 // LED表示関数
-  void NumberPrint(int j){
+void NumberPrint(int j){
     for(int i = 0; i <= 6; i++) digitalWrite(i + 2, !numbers[j][i]);
 }
 
-  void boot() {
+void boot() {
     for(int i=0; i<=9; i++){
     NumberPrint(i);
     delay(100);
-  }
-  NumberPrint(0);
+    }
+NumberPrint(0);
 }
