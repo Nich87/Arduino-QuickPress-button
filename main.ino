@@ -17,7 +17,7 @@ int counter = 1;
 
 void setup() {
     for (int i=2;i<=8;i++) pinMode(i,OUTPUT);          // D2~D8を出力に
-    for (int i : buttons) pinMode( i , INPUT_PULLUP );
+    for (int button : buttons) pinMode( button , INPUT_PULLUP );
     boot();
 }
 
